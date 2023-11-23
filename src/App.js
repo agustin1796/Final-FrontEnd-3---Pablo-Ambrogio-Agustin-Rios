@@ -1,20 +1,19 @@
 import './App.css';
 import { Outlet } from 'react-router-dom';
-import NavBar from './components/NavBar';
-import Card from './components/Card';
-import Footer from './components/Footer';
+import NavBar from './components/common/navbar/NavBar';
+import Footer from './components/common/footer/Footer';
+import DentistContextProvider from './context/DentistContext';
 
 function App() {
   return (
     <>
-
-      <div className="App flex flex-col min-h-screen">
-        <NavBar/>
-        <Outlet/>
-        <Card/>
-      </div>
-
-      <Footer/>
+      <DentistContextProvider>
+        <div className="App flex flex-col min-h-screen">
+          <NavBar />
+          <Outlet />
+          <Footer />
+        </div>
+      </DentistContextProvider>
     </>
   );
 }
