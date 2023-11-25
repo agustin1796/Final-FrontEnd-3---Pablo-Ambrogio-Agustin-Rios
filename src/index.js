@@ -9,6 +9,7 @@ import NotFound from './components/common/notFound/NotFound';
 import Home from './components/pages/home/Home';
 import Contact from './components/pages/contact/Contact';
 import Favorite from './components/pages/favorite/Favorite';
+import DentistData from './components/pages/DentistData/DentistData';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -19,6 +20,7 @@ root.render(
           <Route path="/" element={<Home />} />
           <Route path="contact" element={<Contact />} />
           <Route path="favorite" element={<Favorite />} />
+          <Route path="dentistData" element={<DentistData />} />
           {/* <Route path='dentistas' element={<Card />} /> */}
           <Route path='*' element={<NotFound />} />
         </Route>

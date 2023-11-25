@@ -46,10 +46,11 @@ const DentistContextProvider = ({ children }) => {
         }
     }, [searchForId])
 
+
     const data = {
         dataApi,
         dentistDataForId,
-        setSearchForId
+        setSearchForId,
     }
 
     return (

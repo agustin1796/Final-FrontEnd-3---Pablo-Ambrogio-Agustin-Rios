@@ -21,9 +21,11 @@ body {
 
 .card_item {
 	display: flex;
+	flex-direction: column;
 	padding: 15px 30px;
 	width: 24%;
 	text-align: center;
+	position: relative;
 }
 
 .container .card_item:hover {
@@ -75,21 +77,25 @@ body {
 }
 
 .favorito {
-  margin: 10px auto;
-  width: 100px;
-  height: 35px;
-  background: linear-gradient(180deg, hsl(245, 44%, 65%), hsl(245, 44%, 50%));
-  color: #fff;
-  border: 1px solid hsl(245, 44%, 50%);
-  border-radius: 10px;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+	margin: 10px auto;
+	width: 100px;
+	height: 35px;
+	background: linear-gradient(180deg, hsl(245, 44%, 65%), hsl(245, 44%, 50%));
+	color: #fff;
+	border: 1px solid hsl(245, 44%, 50%);
+	border-radius: 10px;
+	font-weight: 600;
+	cursor: pointer;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+	transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.favorito .color {
+	background: hsl(245, 44%, 50%);
 }
 
 .favorito:hover {
-  background: linear-gradient(180deg, hsl(245, 44%, 50%), hsl(245, 44%, 65%));
-  transform: translateY(-2px);
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+	background: linear-gradient(180deg, hsl(245, 44%, 50%), hsl(245, 44%, 65%));
+	transform: translateY(-2px);
+	box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
 }

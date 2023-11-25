@@ -1,10 +1,10 @@
 import { useContext } from "react"
-import { DentistContext } from "../../context/DentistContext"
+import { DentistContext } from "../../../context/DentistContext";
 
 const DentistData = () => {
 
     const { dentistDataForId } = useContext(DentistContext);
-    // console.log(dentistDataForId);
+    console.log(dentistDataForId);
     // console.log("-----");
     const { data } = dentistDataForId;
     return (
