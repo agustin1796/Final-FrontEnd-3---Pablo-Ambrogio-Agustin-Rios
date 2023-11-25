@@ -7,13 +7,6 @@ const Card = () => {
   const { dataApi, setSearchForId } = useContext(DentistContext);
   const navigate = useNavigate()
 
-  const handleClickCard = id => {
-    setSearchForId(id)
-    navigate("/dentistData")
-  }
-
-  //* Verificar el botón de Favorito
-
   const dentistFav = []
   const handleFavorite = (id) => {
     const arrFav = dataApi.filter(element => element.id === id)
@@ -37,16 +30,20 @@ const Card = () => {
       dentistFav.push(...arrFav)
     }
 
+    localStorage.setItem("favorite", JSON.stringify(dentistFav))
     console.log(dentistFav);
-
   }
 
+  const handleClickCard = id => {
+    setSearchForId(id)
+    navigate("/dentistData")
+  }
 
   return (
     <div className='container'>
       {dataApi.map((elemento) => {
         return (
-          <div className="card_item" key={elemento.id}>
+          <div className="card_item" key={elemento.id} >
             <div className="card_inner"
               onClick={() => handleClickCard(elemento.id)}
             >

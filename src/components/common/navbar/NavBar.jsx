@@ -1,36 +1,48 @@
 import { NavLink } from 'react-router-dom'
+import './NavBar.module.css'
+import { useState } from 'react';
+import { useThemeContext } from '../../../context/ThemeContext';
+import { DarkModeSwitch } from 'react-toggle-dark-mode';
 
 const NavBar = () => {
-  return (
+  const { contextTheme, setContextTheme } = useThemeContext();
+  const [checked, setChecked] = useState(false);
 
-    <nav>
-      <NavLink to={"/"}>Home</NavLink>
-      <NavLink to={"/contact"}>Contact</NavLink>
-      <NavLink to={"/favorite"}>Favorite</NavLink>
+  const handleSwitch = () => {
+    const newTheme = contextTheme === 'light' ? 'dark' : 'light';
+    setContextTheme(newTheme);
+    setChecked((prevChecked) => !prevChecked);
+
+    document.body.style.setProperty('--body-background-color', newTheme === 'light' ? '#ffffff' : '#000000');
+    document.body.style.setProperty('--body-text-color', newTheme === 'light' ? '#000000' : '#ffffff');
+  };
+
+  return (
+    <nav className={`navbar ${contextTheme}`}>
+      <div>
+        <NavLink to="/" className="nav-link" activeClassName="active-link">
+          Home
+        </NavLink>
+        <NavLink to="/contact" className="nav-link" activeClassName="active-link">
+          Contact
+        </NavLink>
+        <NavLink to="/favorite" className="nav-link" activeClassName="active-link">
+          Favorite
+        </NavLink>
+      </div>
+      <div className='toggle-container'>
+        <label htmlFor="check" className="switch">
+          <DarkModeSwitch
+            id="check"
+            className="toggle"
+            type="checkbox"
+            checked={checked}
+            onChange={handleSwitch}
+          />
+        </label>
+      </div>
     </nav>
-    // <nav className="bg-blue-500 p-4">
-    //   <div className="mx-auto flex justify-between items-center">
-    //     <div className="text-white text-xl font-bold">Logo</div>
-    //     <div className="flex space-x-4">
-    //       <NavItem href="/">Inicio</NavItem>
-    //       <NavItem href="/contacto">Contacto</NavItem>
-    //       <NavItem href="/dentistas">Dentistas</NavItem>
-    //       <NavItem href="/favoritos">Favoritos</NavItem>
-    //     </div>
-    //   </div>
-    // </nav>
   );
 };
 
-// const NavItem = ({ href, children }) => {
-//   return (
-//     <a
-//       href={href}
-//       className="text-white hover:text-gray-300 transition duration-300"
-//     >
-//       {children}
-//     </a>
-//   );
-// };
-
-export default NavBar
+export default NavBar;
