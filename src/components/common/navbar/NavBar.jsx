@@ -13,8 +13,8 @@ const NavBar = () => {
     setContextTheme(newTheme);
     setChecked((prevChecked) => !prevChecked);
 
-    document.body.style.setProperty('--body-background-color', newTheme === 'light' ? '#ffffff' : '#000000');
-    document.body.style.setProperty('--body-text-color', newTheme === 'light' ? '#000000' : '#ffffff');
+    document.body.style.setProperty('--body-background-color', newTheme === 'light' ? '#ffffff' : '#27292F');
+    document.body.style.setProperty('--body-text-color', newTheme === 'light' ? '#27292F' : '#ffffff');
   };
 
   return (

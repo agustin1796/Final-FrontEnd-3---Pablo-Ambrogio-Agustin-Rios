@@ -1,7 +1,8 @@
+import CardFavorite from "../../common/cardFavorite/CardFavorite"
 
 const Favorite = () => {
     return (
-        <div>Favorite</div>
+        <CardFavorite />
     )
 }
 

@@ -1,65 +1,79 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 
-// Se crea el contexto
 export const DentistContext = createContext();
 
 const DentistContextProvider = ({ children }) => {
+    const [dataApi, setDataApi] = useState([]);
+    const [dentistDataForId, setDentistDataForId] = useState({});
+    const [searchForId, setSearchForId] = useState(0);
+    const [favoriteDentists, setFavoriteDentists] = useState([]);
 
-    const [dataApi, setDataApi] = useState([])
-    const [dentistDataForId, setDentistDataForId] = useState({})
-    const [searchForId, setSearchForId] = useState(0)
+    const instance = axios.create({
+        baseURL: "https://jsonplaceholder.typicode.com"
+    });
 
-    const instance = axios.create(
-        {
-            baseURL: "https://jsonplaceholder.typicode.com"
-        }
-    )
-
-    async function getData() {
+    const getData = async () => {
         try {
-            const { data } = await instance.get("/users")
-            setDataApi(...dataApi, [...data])
+            const { data } = await instance.get("/users");
+            setDataApi([...data]);
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 
-    const getDataForId = async id => {
+    const getDataForId = async (id) => {
         try {
-            const { data } = await instance.get(`/users/${id}`)
-            setDentistDataForId({ ...dentistDataForId, data })
+            const { data } = await instance.get(`/users/${id}`);
+            setDentistDataForId({ ...data });
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 
-    // Se obtienen todos los dentistas 
+    const addFavoriteDentist = (id) => {
+        const dentist = dataApi.find((dentist) => dentist.id === id);
+        setFavoriteDentists((prevFavorites) => [...prevFavorites, dentist]);
+        updateLocalStorage([...favoriteDentists, dentist]);
+    };
+
+    const removeFavoriteDentist = (id) => {
+        const updatedFavorites = favoriteDentists.filter((dentist) => dentist.id !== id);
+        setFavoriteDentists(updatedFavorites);
+        updateLocalStorage(updatedFavorites);
+    };
+
+    const updateLocalStorage = (favorites) => {
+        localStorage.setItem("favorite", JSON.stringify(favorites));
+    };
+
     useEffect(() => {
-        getData()
-    }, [])
+        getData();
+        const storedFavorites = JSON.parse(localStorage.getItem("favorite")) || [];
+        setFavoriteDentists(storedFavorites);
+    }, []);
 
-    // Buscamos el dentista por ID
     useEffect(() => {
         if (searchForId !== 0) {
-            getDataForId(searchForId)
+            getDataForId(searchForId);
         }
-    }, [searchForId])
-
+    }, [searchForId]);
 
     const data = {
         dataApi,
         dentistDataForId,
+        searchForId,
         setSearchForId,
-    }
+        favoriteDentists,
+        addFavoriteDentist,
+        removeFavoriteDentist,
+    };
 
     return (
-        <DentistContext.Provider
-            value={data}
-        >
+        <DentistContext.Provider value={data}>
             {children}
         </DentistContext.Provider>
-    )
-}
+    );
+};
 
-export default DentistContextProvider
+export default DentistContextProvider;

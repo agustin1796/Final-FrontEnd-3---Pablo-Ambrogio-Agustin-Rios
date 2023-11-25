@@ -7,10 +7,14 @@ const DentistData = () => {
     console.log(dentistDataForId);
     // console.log("-----");
     const { data } = dentistDataForId;
+
     return (
         <>
             <div>DentistData</div>
-            <h1>{data && data.name}</h1>
+            <div>{
+                data &&
+                <h1>{data.name}</h1>
+            }</div>
         </>
     )
 }
