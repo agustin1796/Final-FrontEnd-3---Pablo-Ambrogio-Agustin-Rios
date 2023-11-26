@@ -2,3 +2,31 @@ body {
 	background-color: var(--body-background-color);
 	color: var(--body-text-color);
 }
+
+.navbar {
+	width: 90%;
+	height: auto;
+	height: 3rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 0 auto;
+	padding: 0 1.2rem;
+}
+
+.items {
+	display: flex;
+	column-gap: .5rem;
+}
+
+.navLink {
+	padding: .5rem;
+}
+
+.navLink:hover {
+	color: rgb(243, 113, 113);
+}
+
+.navLink .active {
+	color: blue;
+}

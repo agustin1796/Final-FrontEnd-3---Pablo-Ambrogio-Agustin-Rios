@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import './NavBar.module.css'
+import styleNav from './NavBar.module.css'
 import { useState } from 'react';
 import { useThemeContext } from '../../../context/ThemeContext';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
@@ -18,15 +18,17 @@ const NavBar = () => {
   };
 
   return (
-    <nav className={`navbar ${contextTheme}`}>
-      <div>
-        <NavLink to="/" className="nav-link" activeClassName="active-link">
+    <nav className={`${styleNav.navbar} ${contextTheme}`}>
+      <div
+        className={styleNav.items}
+      >
+        <NavLink to="/" className={styleNav.navLink} activeClassName="active-link">
           Home
         </NavLink>
-        <NavLink to="/contact" className="nav-link" activeClassName="active-link">
+        <NavLink to="/contact" className={styleNav.navLink} activeClassName="active-link">
           Contact
         </NavLink>
-        <NavLink to="/favorite" className="nav-link" activeClassName="active-link">
+        <NavLink to="/favorite" className={styleNav.navLink} activeClassName="active-link">
           Favorite
         </NavLink>
       </div>
@@ -41,7 +43,7 @@ const NavBar = () => {
           />
         </label>
       </div>
-    </nav>
+    </nav >
   );
 };
 

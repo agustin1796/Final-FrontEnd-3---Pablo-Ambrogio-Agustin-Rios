@@ -3,6 +3,7 @@ import { DentistContext } from '../../../context/DentistContext';
 import { useNavigate } from 'react-router-dom';
 import FavoriteBorderSharpIcon from '@mui/icons-material/FavoriteBorderSharp';
 import FavoriteSharpIcon from '@mui/icons-material/FavoriteSharp';
+import styleCard from './Card.module.css'
 
 const Card = () => {
   const { dataApi, setSearchForId, addFavoriteDentist, removeFavoriteDentist, favoriteDentists } = useContext(DentistContext);
@@ -24,19 +25,19 @@ const Card = () => {
   };
 
   return (
-    <div className='container'>
+    <div className={styleCard.container}>
       {dataApi.map((elemento) => (
-        <div className="card_item" key={elemento.id} >
-          <div className="card_inner" onClick={() => handleClickCard(elemento.id)}>
+        <div className={styleCard.card_item} key={elemento.id} >
+          <div className={styleCard.card_inner} onClick={() => handleClickCard(elemento.id)}>
             <img src="https://cdn-icons-png.flaticon.com/512/3467/3467830.png" alt="Dentist Avatar" />
-            <div className='name'>{elemento.name}</div>
-            <div className='userName'>{elemento.username}</div>
+            <div className={styleCard.name}>{elemento.name}</div>
+            <div className={styleCard.userName}>{elemento.username}</div>
           </div>
           <button
-            className='favorito'
+            className={styleCard.favorito}
             onClick={() => handleFavorite(elemento.id)}
           >
-            {isDentistInFavorites(elemento.id) ? <FavoriteSharpIcon sx={{ color: 'red' }} /> : <FavoriteBorderSharpIcon color="disabled"/>}
+            {isDentistInFavorites(elemento.id) ? <FavoriteSharpIcon sx={{ color: 'red' }} /> : <FavoriteBorderSharpIcon color="disabled" />}
           </button>
         </div>
       ))}

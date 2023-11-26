@@ -8,6 +8,7 @@ const DentistContextProvider = ({ children }) => {
     const [dentistDataForId, setDentistDataForId] = useState({});
     const [searchForId, setSearchForId] = useState(0);
     const [favoriteDentists, setFavoriteDentists] = useState([]);
+    const [recuperandoDatos, setRecuperandoDatos] = useState(false)
 
     const instance = axios.create({
         baseURL: "https://jsonplaceholder.typicode.com"
@@ -54,7 +55,7 @@ const DentistContextProvider = ({ children }) => {
     }, []);
 
     useEffect(() => {
-        if (searchForId !== 0) {
+        if (searchForId > 0) {
             getDataForId(searchForId);
         }
     }, [searchForId]);
@@ -63,8 +64,8 @@ const DentistContextProvider = ({ children }) => {
         dataApi,
         dentistDataForId,
         searchForId,
-        setSearchForId,
         favoriteDentists,
+        setSearchForId,
         addFavoriteDentist,
         removeFavoriteDentist,
     };

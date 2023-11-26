@@ -40,32 +40,51 @@ const Form = () => {
         }
     }
 
+    const style = {
+        form : "w-1/2 h-1/2 m-auto flex flex-col gap-y-2 justify-center items-center rounded-lg border-2",
+        div : "w-10/12 h-8 p-4 flex items-center justify-between border-2"
+    }
+
+
     return (
         <>
             <form
                 onSubmit={handleSubmit}
+                className={style.form}
             >
-                <div>
+                <div
+                    className={style.div}
+                >
                     <label htmlFor="name">Nombre</label>
-                    <input type="text" name="name" id="name"
+                    <input
+                        className='w-10/12 h-full'
+                        type="text" name="name" id="name"
                         onChange={handleInput}
                     />
                 </div>
-                <div>
+                <div
+                    className={style.div}
+                >
                     <label htmlFor="email">Email</label>
-                    <input type="text" name="email" id="email"
+                    <input
+                        className='w-10/12 h-full'
+                        type="text" name="email" id="email"
                         onChange={handleInput}
                     />
                 </div>
-                <div>
+                <div
+                    className='w-10/12 flex justify-between'
+                >
                     <p>{
                         messageError ? seeMessage : null
                     }</p>
                 </div>
                 <button
+                    className='w-24 h-8 bg-red-400'
                     type="submit"
                     onSubmit={handleSubmit}
-                >Enviar</button>
+                >
+                    Enviar</button>
             </form>
         </>
     )
