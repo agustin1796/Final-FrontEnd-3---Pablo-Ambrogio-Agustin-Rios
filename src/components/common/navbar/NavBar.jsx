@@ -1,47 +1,37 @@
 import { NavLink } from 'react-router-dom'
 import styleNav from './NavBar.module.css'
-import { useState } from 'react';
-import { useThemeContext } from '../../../context/ThemeContext';
-import { DarkModeSwitch } from 'react-toggle-dark-mode';
+import { useContext } from 'react';
+import { ThemeContext } from '../../../context/ThemeContext';
+import NightlightIcon from '@mui/icons-material/Nightlight';
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
 
 const NavBar = () => {
-  const { contextTheme, setContextTheme } = useThemeContext();
-  const [checked, setChecked] = useState(false);
 
-  const handleSwitch = () => {
-    const newTheme = contextTheme === 'light' ? 'dark' : 'light';
-    setContextTheme(newTheme);
-    setChecked((prevChecked) => !prevChecked);
+  const { handleChangeTheme, theme } = useContext(ThemeContext)
 
-    document.body.style.setProperty('--body-background-color', newTheme === 'light' ? '#ffffff' : '#27292F');
-    document.body.style.setProperty('--body-text-color', newTheme === 'light' ? '#27292F' : '#ffffff');
-  };
+  const isMode = theme ? document.body.setAttribute('data-theme', 'dark') : document.body.setAttribute('data-theme', 'light')
 
   return (
-    <nav className={`${styleNav.navbar} ${contextTheme}`}>
+    <nav className={`${styleNav.navbar} ${isMode}`}>
       <div
         className={styleNav.items}
       >
-        <NavLink to="/" className={styleNav.navLink} activeClassName="active-link">
+        <NavLink to="/" className={styleNav.navLink}>
           Home
         </NavLink>
-        <NavLink to="/contact" className={styleNav.navLink} activeClassName="active-link">
+        <NavLink to="/contact" className={styleNav.navLink}>
           Contact
         </NavLink>
-        <NavLink to="/favorite" className={styleNav.navLink} activeClassName="active-link">
+        <NavLink to="/favorite" className={styleNav.navLink} >
           Favorite
         </NavLink>
       </div>
-      <div className='toggle-container'>
-        <label htmlFor="check" className="switch">
-          <DarkModeSwitch
-            id="check"
-            className="toggle"
-            type="checkbox"
-            checked={checked}
-            onChange={handleSwitch}
-          />
-        </label>
+      <div>
+        <div
+          onClick={handleChangeTheme}
+        >
+          {theme ? <WbSunnyIcon /> : <NightlightIcon sx={{ color: '#222' }} />}
+        </div>
       </div>
     </nav >
   );

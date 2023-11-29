@@ -41,10 +41,9 @@ const Form = () => {
     }
 
     const style = {
-        form : "w-1/2 h-1/2 m-auto flex flex-col gap-y-2 justify-center items-center rounded-lg border-2",
-        div : "w-10/12 h-8 p-4 flex items-center justify-between border-2"
+        form: "w-1/2 h-1/2 m-auto flex flex-col gap-y-2 justify-center items-center rounded-lg border-2",
+        div: "w-10/12 h-8 pl-4 py-4 flex items-center justify-between border-2 rounded-md"
     }
-
 
     return (
         <>
@@ -57,7 +56,7 @@ const Form = () => {
                 >
                     <label htmlFor="name">Nombre</label>
                     <input
-                        className='w-10/12 h-full'
+                        className='w-10/12 h-8 border-none outline-none px-4 text-[#222]'
                         type="text" name="name" id="name"
                         onChange={handleInput}
                     />
@@ -67,7 +66,7 @@ const Form = () => {
                 >
                     <label htmlFor="email">Email</label>
                     <input
-                        className='w-10/12 h-full'
+                        className='w-10/12 h-8 border-none outline-none px-4 text-[#222]'
                         type="text" name="email" id="email"
                         onChange={handleInput}
                     />

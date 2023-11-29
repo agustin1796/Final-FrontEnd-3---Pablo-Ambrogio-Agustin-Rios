@@ -1,6 +1,7 @@
+
 body {
-	background-color: var(--body-background-color);
-	color: var(--body-text-color);
+	background-color: var(--background);
+	color: var(--text-primary);
 }
 
 .navbar {
@@ -12,6 +13,14 @@ body {
 	align-items: center;
 	margin: 0 auto;
 	padding: 0 1.2rem;
+}
+
+.navbarIsDark {
+	background-color: #222;
+}
+
+.navbarIsLight {
+	background-color: #fff;
 }
 
 .items {

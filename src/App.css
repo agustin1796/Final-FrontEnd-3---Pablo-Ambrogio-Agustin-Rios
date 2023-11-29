@@ -2,6 +2,4 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-	background-color: hsla(225, 100%, 94%, 0.801);
-}
+@import url(./styles/theme.css);
