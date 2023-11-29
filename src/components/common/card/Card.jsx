@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { DentistContext } from '../../../context/DentistContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import FavoriteBorderSharpIcon from '@mui/icons-material/FavoriteBorderSharp';
 import FavoriteSharpIcon from '@mui/icons-material/FavoriteSharp';
 import styleCard from './Card.module.css'
