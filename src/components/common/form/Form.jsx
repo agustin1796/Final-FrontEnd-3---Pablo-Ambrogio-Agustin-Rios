@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { validateName, validateEmail } from '../../../validate/validate'
+import { validName } from '../../../validate/validName.js'
+import { validEmail } from '../../../validate/validEmail.js'
 
 const Form = () => {
 
@@ -8,8 +9,7 @@ const Form = () => {
         email: ""
     })
 
-    const [messageError, setMessageError] = useState(false)
-    const [seeMessage, setSeeMessage] = useState("")
+    const [message, setMessage] = useState("")
 
     const handleInput = e => {
         const { name, value } = e.target
@@ -20,23 +20,17 @@ const Form = () => {
     }
 
     const handleSubmit = e => {
-        e.preventDefault();
-
-        if (validateName(inputs.name) && validateEmail(inputs.email)) {
-            console.log("Felicitaciones!!!, " + inputs.name + " " + inputs.email)
-
-            localStorage.setItem("user", JSON.stringify(inputs))
-
-            setMessageError(false)
-            setSeeMessage("")
+        e.preventDefault()
+        if (validName(inputs.name) && validEmail(inputs.email)) {
+            console.log("hola!");
+            setMessage(`Gracias ${inputs.name}, te contactaremos cuando antes vía mail`)
             setInputs({
                 name: "",
                 email: ""
             })
         }
         else {
-            setMessageError(true)
-            setSeeMessage("Por favor verifique su información nuevamente")
+            setMessage("Por favor verifique su información nuevamente")
         }
     }
 
@@ -58,6 +52,7 @@ const Form = () => {
                     <input
                         className='w-10/12 h-8 border-none outline-none px-4 text-[#222]'
                         type="text" name="name" id="name"
+                        value={inputs.name}
                         onChange={handleInput}
                     />
                 </div>
@@ -68,15 +63,14 @@ const Form = () => {
                     <input
                         className='w-10/12 h-8 border-none outline-none px-4 text-[#222]'
                         type="text" name="email" id="email"
+                        value={inputs.email}
                         onChange={handleInput}
                     />
                 </div>
                 <div
                     className='w-10/12 flex justify-between'
                 >
-                    <p>{
-                        messageError ? seeMessage : null
-                    }</p>
+                    <p>{message}</p>
                 </div>
                 <button
                     className='w-24 h-8 bg-red-400'

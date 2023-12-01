@@ -19,7 +19,8 @@ root.render(
           <Route path="/" element={<Home />} />
           <Route path="contact" element={<Contact />} />
           <Route path="favorite" element={<Favorite />} />
-          <Route path="dentistData" element={<DentistData />} />
+          {/* <Route path="dentistData" element={<DentistData />} /> */}
+          <Route path="detail/:id" element={<DentistData />} />
           {/* <Route path='dentistas' element={<Card />} /> */}
           <Route path='*' element={<NotFound />} />
         </Route>
